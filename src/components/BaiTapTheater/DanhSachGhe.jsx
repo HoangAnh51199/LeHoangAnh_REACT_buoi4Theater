@@ -24,7 +24,7 @@ class DanhSachGhe extends Component {
   };
 
   render() {
-    console.log(this.props);
+   // console.log(this.props);
     return (
       <div className="seatStructure txt-center">
         <div className="py-1 screen text-center "></div>

@@ -87,18 +87,19 @@ class ChiTiet extends Component {
             </tr>
           </table>
         </div>
+
         <button
           onClick={() =>
             this.props.dispatch({
-              type: "PAYMENT",
-              payload: this.props.cartList, //cartlist
+              type: "PAY_MENT",
+              // payload:this.props.cartList, //cartlist
             })
           }
           className="pay"
         >
-
           PAYMENT
         </button>
+
       </div>
     );
   }
