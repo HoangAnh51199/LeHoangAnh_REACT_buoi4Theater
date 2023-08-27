@@ -60,7 +60,7 @@ body {
     width: 45px;
     height: 35px;
     font-size: 12px;
-    margin-left: 2%;
+    padding: 10px;
     margin-bottom: 1%;
     border-radius: 5px;
   }
@@ -74,10 +74,6 @@ body {
     font-family: 'fontGame';
 }
 
-
-.ghe{
-    
-}
 
 .rowNumber{
     /* font-size: 25px; */
@@ -108,8 +104,21 @@ body {
     font-size: 25px;
     color: #fff;
 }
+.scree::after {
+  background-color:#fff;
 
+}
 
+td {
+  margin: 10px;
+  width: 40px;
+  font-weight: 600;
+  font-size: 1em;
+  padding-top: 7px;
+  height: 24px; 
+  padding: 10px;
+  color: #fff;
+}
 .gheDuocChon {
     border: 3px solid orange;
 
@@ -133,4 +142,31 @@ body {
     width: 45px;
     height: 35px;
 
+}
+.title_numb {
+  color: yellow;
+  font-size: 20px;
+  padding-left: 23px;
+}
+
+ .chiTiet {
+  border: 1px solid white;
+  color: white;
+}
+
+.pay {
+  background:#ff6100;
+  border: none;
+  color: #000;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 1em;
+  letter-spacing: 1px;
+  font-family: 'Source Sans Pro', sans-serif;
+  cursor: pointer;
+}
+
+.btn-success {
+  cursor: pointer;
 }
