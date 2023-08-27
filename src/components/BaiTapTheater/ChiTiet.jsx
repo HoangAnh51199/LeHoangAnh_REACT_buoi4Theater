@@ -35,7 +35,9 @@ class ChiTiet extends Component {
   
 
   tongTien = () => {
-   
+   return this.props.cartList.reduce((sum,element)=>{
+    return sum+element.element.gia;
+   },0)
     //console.log(123);
   };
 
@@ -80,7 +82,7 @@ class ChiTiet extends Component {
             {this.renderContent()}
             <tr>
               <td className="chiTiet">Tổng tiền</td>
-              <td className="chiTiet"> {this.tongTien()}</td>
+              <td className="chiTiet">{this.tongTien()}</td>
               <td className="chiTiet"></td>
             </tr>
           </table>
