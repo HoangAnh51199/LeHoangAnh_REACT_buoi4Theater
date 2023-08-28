@@ -5,7 +5,13 @@ import { connect } from "react-redux";
 class DanhSachGhe extends Component {
   renderContent = () => {
     return this.props.danhSachGhe.map((element) => {
-      if (element.hang === "") return;
+      if (element.hang === "") return(
+        <tr>
+          
+          <td/>
+          {this.renderHangNumber(element.danhSachGhe)} 
+        </tr>
+      );
 
       return (
         <tr key={element.hang}>
@@ -19,9 +25,15 @@ class DanhSachGhe extends Component {
 
   renderHang = (data, hang) => {
     return data.map((element) => {
-      return <Ghe hang={hang} element={element} key={element.soGhe} />;
+      return <td>  <Ghe hang={hang} element={element} key={element.soGhe} /> </td>;
     });
   };
+
+  renderHangNumber=(data) => {
+    return data.map((element)=>{
+      return <td key={element.soGhe} className=" title_numb ">{element.soGhe}</td>
+    }); 
+  }
 
   render() {
    // console.log(this.props);
@@ -29,7 +41,7 @@ class DanhSachGhe extends Component {
       <div className="seatStructure txt-center">
         <div className="py-1 screen text-center "></div>
         <div className="title my-2 "> </div>
-        <tr>
+        {/* <tr>
           <td />
           <td className=" title_numb ">1</td>
           <td className="title_numb ">2</td>
@@ -43,9 +55,11 @@ class DanhSachGhe extends Component {
           <td className="title_numb ">10</td>
           <td className="title_numb ">11</td>
           <td className="title_numb ">12</td>
-        </tr>
-
-        <table> {this.renderContent()} </table>
+        </tr> */}
+      <div className="demo">
+      {this.renderContent()} 
+      </div>
+      
       </div>
     );
   }
