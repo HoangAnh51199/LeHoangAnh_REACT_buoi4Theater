@@ -54,40 +54,29 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
       const data = JSON.parse(JSON.stringify(state.danhSachGhe));
       const cartList = JSON.parse(JSON.stringify(state.cartList));
 
+      const idxHang = data.findIndex(// tim hàng ?
+      (element) => element.hang === cartList.hang //tìm index theo payload soGhe
+
+    );
+     //cartList: [element:{},hang] 2 propery
      
-      for (let i = 0; i < cartList.length; i++) {
-        const hangCartList = cartList[i].hang;
-        const soGheCart = cartList[i].element.soGhe;
-        console.log(hangCartList);
-        for (let j = 0; j < data.length; j++) {
-          const hangData = data[j].hang;
-          const soGheData = data[j].danhSachGhe.soGhe;
-            console.log(soGheData);
-          if (hangCartList === hangData) {
-           if(soGheCart === soGheData) {
-            // data[idxHang].danhSachGhe[index].daDat = !data[idxHang].danhSachGhe[index].daDat; 
-            data[j].danhSachGhe.daDat = !data[j].danhSachGhe.daDat;
-           }
-            
-          }
-        }
-      }
-      // console.log(cartList);
+     if (idxHang !== -1) {
+      //  console.log(data);
+      const indexSG = data[idxHang].danhSachGhe.findIndex(//tim soghe
+        (element) => element.soGhe === cartList[idxHang].element.soGhe //tìm index theo payload soGhe
 
-      // if(idxHang !== -1)  {
-      //   //  console.log(data);
-      //   const index = data[idxHang].danhSachGhe.findIndex(//tim soghe trong data
-      //     (element) => element.soGhe === cartList.element.soGhe //tìm index theo soGhe
+      );
+      //  console.log(index);
+      if (indexSG !== -1 && data[idxHang].danhSachGhe[indexSG].daDat == false) {
+        data[idxHang].danhSachGhe[indexSG].daDat = !data[idxHang].danhSachGhe[indexSG].daDat;
 
-      //   );
-      //     console.log(index);
-      //   if (index !== -1) {
-      //     data[idxHang].danhSachGhe[index].daDat = !data[idxHang].danhSachGhe[index].daDat; 
+      } 
 
-      //   //đổi thuộc tính false sang true daDat
-      //     cartList.splice(0, cartList.length);//clear table
-      //   }
-      // }
+
+    }
+    
+   
+    
        cartList.splice(0, cartList.length);
       state.cartList = cartList; //render lại
       state.danhSachGhe = data;//render lại ra table -> daDat
