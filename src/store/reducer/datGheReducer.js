@@ -35,18 +35,22 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
           console.log(data[idxHang].danhSachGhe[index]);
 
           //đổi thuộc tính sang true dangchon
+          
           cartList.push({ ...data[idxHang].danhSachGhe[index],hang: Hang});//push element {soGhe,gia,DangChon,daDat} payload vào cartList 
+          state.cartList=cartList;
         } else if (index !== -1 && DangChon == true) {
           data[idxHang].danhSachGhe[index].DangChon = !data[idxHang].danhSachGhe[index].DangChon;
-
-          cartList.splice(cartList[idxHang], 1);//xóa cartlist
+          const newArray = cartList.filter(item => item.soGhe !== soGhePayLoad);
+          // cartList.splice(cartList[index], 1);//xóa cartlist
+          console.log(newArray);
+          state.cartList = newArray;
         }
 
 
       }
 
       state.danhSachGhe = data;//render table
-      state.cartList = cartList;//render table chitiet 
+      //v = newArray;//render table chitiet 
       break;
     }
 
@@ -124,12 +128,14 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
           data[idxHang].danhSachGhe[index].DangChon = !data[idxHang].danhSachGhe[index].DangChon;
 
          
-          //đổi thuộc tính sang false
-          cartList.splice(cartList[idxHang], 1);//push element {soGhe,gia,DangChon,daDat} payload vào cartList 
+          const newArray = cartList.filter(item => item.soGhe !== soGhePayLoad);
+          // cartList.splice(cartList[index], 1);//xóa cartlist
+          console.log(newArray);
+          state.cartList = newArray;
         }
       }
       state.danhSachGhe = data;//render table
-      state.cartList = cartList;//render table chitiet 
+      
       break;
     }
   }
