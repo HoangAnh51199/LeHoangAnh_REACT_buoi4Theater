@@ -1,4 +1,4 @@
-import { DAT_GHE } from "../types/datGheType";
+import { DAT_GHE, DELETE, PAY_MENT } from "../types/datGheType";
 
 export const datGheAction = (data,data2) => {
   return {
@@ -10,6 +10,24 @@ export const datGheAction = (data,data2) => {
     
   };
 };
+
+export const xoaGheAction = (data) => {
+  return {
+    type: DELETE,
+    payload: data,
+    
+  };
+};
+
+export const payMentAction = () => {
+  return {
+    type: PAY_MENT,
+    
+    
+  };
+};
+
+
 
 
 // type: "DAT_GHE",

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { payMentAction, xoaGheAction } from "../../store/actions/datGheAction";
 
 class ChiTiet extends Component {
   renderContent = () => {
@@ -14,11 +15,13 @@ class ChiTiet extends Component {
           <td className="chiTiet">{element.gia}</td>
           <td className="chiTiet">
             <i //nút hủy
-              onClick={() =>
-                this.props.dispatch({
-                  type: "DELETE",
-                  payload: element, //truyền element hien tại
-                })
+              // onClick={() =>
+              //   this.props.dispatch({
+              //     type: "DELETE",
+              //     payload: element, //truyền element hien tại
+              //   })
+              // }
+              onClick={() => this.props.dispatch(xoaGheAction(element))
               }
             >
               &#x274C;
@@ -89,12 +92,15 @@ class ChiTiet extends Component {
         </div>
 
         <button
-          onClick={() =>
-            this.props.dispatch({
-              type: "PAY_MENT",
-              // payload:this.props.cartList, //cartlist
-            })
+          // onClick={() =>
+          //   this.props.dispatch({
+          //     type: "PAY_MENT",
+          //     // payload:this.props.cartList, //cartlist
+          //   })
+          // }
+          onClick={() => this.props.dispatch(payMentAction())
           }
+
           className="pay"
         >
           PAYMENT

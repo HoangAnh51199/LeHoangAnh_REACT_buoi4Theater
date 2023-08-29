@@ -1,5 +1,5 @@
 import data from "../../data/danhSachGhe.json";
-import { DAT_GHE } from "../types/datGheType";
+import { DAT_GHE, DELETE, PAY_MENT } from "../types/datGheType";
 
 const DEFAULT_STATE = {
   danhSachGhe: data,
@@ -55,7 +55,7 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
     }
 
 
-    case "PAY_MENT": {
+    case PAY_MENT: {
       const data = JSON.parse(JSON.stringify(state.danhSachGhe));
       const cartList = JSON.parse(JSON.stringify(state.cartList));
 
@@ -105,7 +105,7 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
       break;
     }
 
-    case "DELETE": {
+    case DELETE: {
       const data = JSON.parse(JSON.stringify(state.danhSachGhe));
       const cartList = JSON.parse(JSON.stringify(state.cartList));
       const soGhePayLoad = action.payload.soGhe;
