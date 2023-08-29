@@ -8,10 +8,10 @@ class ChiTiet extends Component {
     return this.props.cartList.map((element) => {
       return (
         <tr>
-          <td key={element.element.soGhe} className="chiTiet">
-            {element.element.soGhe}
+          <td key={element.soGhe} className="chiTiet">
+            {element.soGhe}
           </td>
-          <td className="chiTiet">{element.element.gia}</td>
+          <td className="chiTiet">{element.gia}</td>
           <td className="chiTiet">
             <i //nút hủy
               onClick={() =>
@@ -36,7 +36,7 @@ class ChiTiet extends Component {
 
   tongTien = () => {
    return this.props.cartList.reduce((sum,element)=>{
-    return sum+element.element.gia;
+    return sum+element.gia;
    },0)
     //console.log(123);
   };

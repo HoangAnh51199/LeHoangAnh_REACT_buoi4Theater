@@ -32,14 +32,14 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
         //  console.log(index);
         if (index !== -1 && DangChon == false) {
           data[idxHang].danhSachGhe[index].DangChon = !data[idxHang].danhSachGhe[index].DangChon;
-
+          console.log(data[idxHang].danhSachGhe[index]);
 
           //đổi thuộc tính sang true dangchon
-          cartList.push({ ...action.payload });//push element {soGhe,gia,DangChon,daDat} payload vào cartList 
+          cartList.push({ ...data[idxHang].danhSachGhe[index],hang: Hang});//push element {soGhe,gia,DangChon,daDat} payload vào cartList 
         } else if (index !== -1 && DangChon == true) {
           data[idxHang].danhSachGhe[index].DangChon = !data[idxHang].danhSachGhe[index].DangChon;
 
-          cartList.splice(cartList[index], 1);//xóa cartlist
+          cartList.splice(cartList[idxHang], 1);//xóa cartlist
         }
 
 
@@ -69,7 +69,7 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
         for (const [index2, property2] of cartList.entries()) {
           if (property1.hang === property2.hang) {
             const hangData = data[index1].danhSachGhe;
-            const hangCart = cartList[index2].element
+            const hangCart = cartList[index2];
             console.log(`Vị trí của thuộc tính có giá trị giống nhau: ${index1} trong mảng 1 và ${index2} trong mảng 2`);
             console.log(hangData);
             console.log(hangCart);
@@ -92,21 +92,7 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
           }
         }
       }
-      //cartList: [element:{},hang] 2 propery
-
-      //  if (idxHang !== -1) {
-      //   //  console.log(data);
-      //   const indexSG = data[idxHang].danhSachGhe.findIndex(//tim soghe
-      //     (element) => element.soGhe === cartList[idxHang].element.soGhe //tìm index theo payload soGhe
-
-      //   );
-      //    console.log(indexSG);
-      //   if (indexSG !== -1 && data[idxHang].danhSachGhe[indexSG].daDat == false) {
-      //     data[idxHang].danhSachGhe[indexSG].daDat = !data[idxHang].danhSachGhe[indexSG].daDat;
-
-      //   } 
-      // }
-
+     
 
 
       cartList.splice(0, cartList.length);
@@ -118,28 +104,28 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
     case "DELETE": {
       const data = JSON.parse(JSON.stringify(state.danhSachGhe));
       const cartList = JSON.parse(JSON.stringify(state.cartList));
-      const soGhePayLoad = action.payload.element.soGhe;
+      const soGhePayLoad = action.payload.soGhe;
       const Hang = action.payload.hang;
-      const DangChon = action.payload.element.DangChon;
+      const DangChon = action.payload.DangChon;
 
       const idxHang = data.findIndex(// tim hàng ?
         (element) => element.hang === Hang //tìm index theo payload soGhe
 
       );
-
+      console.log(action.payload);
       if (idxHang !== -1) {
         //  console.log(data);
         const index = data[idxHang].danhSachGhe.findIndex(//tim soghe
           (element) => element.soGhe === soGhePayLoad //tìm index theo payload soGhe
 
         );
-        //  console.log(index);
-        if (index !== -1  && DangChon == false) {
+          console.log(index);
+        if (index !== -1 && DangChon ==true) {
           data[idxHang].danhSachGhe[index].DangChon = !data[idxHang].danhSachGhe[index].DangChon;
 
-
+         
           //đổi thuộc tính sang false
-          cartList.splice(cartList[index], 1);//push element {soGhe,gia,DangChon,daDat} payload vào cartList 
+          cartList.splice(cartList[idxHang], 1);//push element {soGhe,gia,DangChon,daDat} payload vào cartList 
         }
       }
       state.danhSachGhe = data;//render table
