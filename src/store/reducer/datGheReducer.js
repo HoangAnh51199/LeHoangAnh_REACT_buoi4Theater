@@ -1,4 +1,5 @@
 import data from "../../data/danhSachGhe.json";
+import { DAT_GHE } from "../types/datGheType";
 
 const DEFAULT_STATE = {
   danhSachGhe: data,
@@ -7,7 +8,7 @@ const DEFAULT_STATE = {
 
 export const datGheReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
-    case "DAT_GHE": {
+    case DAT_GHE: {
       console.log(action.payload);
 
       // CLONE DEEP
@@ -119,6 +120,7 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
       const cartList = JSON.parse(JSON.stringify(state.cartList));
       const soGhePayLoad = action.payload.element.soGhe;
       const Hang = action.payload.hang;
+      const DangChon = action.payload.element.DangChon;
 
       const idxHang = data.findIndex(// tim hàng ?
         (element) => element.hang === Hang //tìm index theo payload soGhe
@@ -132,7 +134,7 @@ export const datGheReducer = (state = DEFAULT_STATE, action) => {
 
         );
         //  console.log(index);
-        if (index !== -1) {
+        if (index !== -1  && DangChon == false) {
           data[idxHang].danhSachGhe[index].DangChon = !data[idxHang].danhSachGhe[index].DangChon;
 
 
